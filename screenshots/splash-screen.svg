@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 393 852" width="393" height="852">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#07090f"/>
+      <stop offset="75%"  stop-color="#080b14"/>
+      <stop offset="100%" stop-color="#130808"/>
+    </linearGradient>
+    <radialGradient id="ambientGlow" cx="50%" cy="48%" r="48%">
+      <stop offset="0%"   stop-color="#0a3a6a" stop-opacity="1"/>
+      <stop offset="55%"  stop-color="#061a38" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#07090f"  stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="circleGrad" cx="50%" cy="42%" r="58%">
+      <stop offset="0%"   stop-color="#1a4a8a"/>
+      <stop offset="60%"  stop-color="#0e2d60"/>
+      <stop offset="100%" stop-color="#081840"/>
+    </radialGradient>
+    <radialGradient id="glassSheen" cx="42%" cy="32%" r="50%">
+      <stop offset="0%"   stop-color="#4499ee" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#4499ee" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#55ccff" stop-opacity="0.9"/>
+      <stop offset="45%"  stop-color="#3399dd" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#1166aa" stop-opacity="0.5"/>
+    </linearGradient>
+    <filter id="glowFilter" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="iconGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="bigGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="28"/>
+    </filter>
+  </defs>
+
+  <!-- Fondo estatico -->
+  <rect width="393" height="852" fill="url(#bgGrad)"/>
+
+  <!-- Estrellas estaticas -->
+  <g fill="white">
+    <circle cx="22"  cy="60"  r="0.8" opacity="0.7"/>
+    <circle cx="65"  cy="38"  r="0.6" opacity="0.65"/>
+    <circle cx="130" cy="72"  r="1.0" opacity="0.85"/>
+    <circle cx="200" cy="28"  r="0.7" opacity="0.75"/>
+    <circle cx="270" cy="58"  r="0.9" opacity="0.8"/>
+    <circle cx="340" cy="80"  r="0.6" opacity="0.65"/>
+    <circle cx="375" cy="44"  r="0.7" opacity="0.7"/>
+    <circle cx="18"  cy="160" r="0.8" opacity="0.7"/>
+    <circle cx="85"  cy="140" r="0.6" opacity="0.6"/>
+    <circle cx="155" cy="110" r="0.9" opacity="0.8"/>
+    <circle cx="300" cy="125" r="0.7" opacity="0.7"/>
+    <circle cx="365" cy="150" r="0.6" opacity="0.65"/>
+    <circle cx="42"  cy="240" r="0.7" opacity="0.65"/>
+    <circle cx="118" cy="220" r="0.5" opacity="0.6"/>
+    <circle cx="290" cy="210" r="0.8" opacity="0.75"/>
+    <circle cx="375" cy="235" r="0.6" opacity="0.65"/>
+    <circle cx="30"  cy="660" r="0.8" opacity="0.6"/>
+    <circle cx="90"  cy="640" r="0.6" opacity="0.55"/>
+    <circle cx="310" cy="650" r="0.7" opacity="0.6"/>
+    <circle cx="370" cy="670" r="0.5" opacity="0.5"/>
+    <circle cx="55"  cy="730" r="0.7" opacity="0.55"/>
+    <circle cx="140" cy="715" r="0.5" opacity="0.5"/>
+    <circle cx="260" cy="725" r="0.8" opacity="0.6"/>
+    <circle cx="355" cy="740" r="0.6" opacity="0.55"/>
+    <circle cx="15"  cy="790" r="0.6" opacity="0.5"/>
+    <circle cx="100" cy="810" r="0.7" opacity="0.55"/>
+    <circle cx="285" cy="800" r="0.5" opacity="0.5"/>
+    <circle cx="370" cy="815" r="0.6" opacity="0.5"/>
+  </g>
+  <g fill="#88ccff">
+    <circle cx="175" cy="95"  r="0.5" opacity="0.6"/>
+    <circle cx="230" cy="170" r="0.6" opacity="0.55"/>
+    <circle cx="80"  cy="300" r="0.5" opacity="0.5"/>
+    <circle cx="330" cy="290" r="0.6" opacity="0.55"/>
+    <circle cx="195" cy="680" r="0.5" opacity="0.45"/>
+    <circle cx="240" cy="760" r="0.4" opacity="0.4"/>
+  </g>
+
+  <!-- GRUPO QUE GIRA: halo + anillos + circulo + icono -->
+  <!-- Centro de rotacion: 196.5, 415 -->
+  <g id="spinner">
+    <!-- Halo grande difuso -->
+    <circle cx="196.5" cy="415" r="160" fill="#1177dd" opacity="0.18" filter="url(#bigGlow)"/>
+    <!-- Ambiente azul -->
+    <ellipse cx="196.5" cy="420" rx="220" ry="200" fill="url(#ambientGlow)"/>
+    <!-- Anillos exteriores -->
+    <circle cx="196.5" cy="415" r="168" fill="none" stroke="#1a6aaa" stroke-width="1"   opacity="0.3"/>
+    <circle cx="196.5" cy="415" r="155" fill="none" stroke="url(#ringGrad)" stroke-width="1.5" opacity="0.45" filter="url(#glowFilter)"/>
+    <circle cx="196.5" cy="415" r="140" fill="none" stroke="#2288cc" stroke-width="1"   opacity="0.35"/>
+    <!-- Cuerpo principal del circulo -->
+    <circle cx="196.5" cy="415" r="126" fill="url(#circleGrad)" filter="url(#glowFilter)"/>
+    <circle cx="196.5" cy="415" r="126" fill="none" stroke="#33aaee" stroke-width="2.5" opacity="0.85"/>
+    <!-- Destello cristal -->
+    <ellipse cx="175" cy="355" rx="55" ry="28" fill="url(#glassSheen)" transform="rotate(-18,175,355)" opacity="0.65"/>
+    <!-- Icono cabeza + engranaje -->
+    <g transform="translate(196.5,415)" filter="url(#iconGlow)">
+      <path d="M0,-54 C-30,-54 -50,-34 -50,-8 C-50,14 -38,32 -20,42 L-20,56 L20,56 L20,42 C38,32 50,14 50,-8 C50,-34 30,-54 0,-54Z M-16,56 L-16,66 L16,66 L16,56Z" fill="#3ab8e8" opacity="0.95"/>
+      <circle cx="0" cy="-6" r="13" fill="#07192e"/>
+      <circle cx="0" cy="-6" r="8" fill="none" stroke="#3ab8e8" stroke-width="2.5"/>
+      <g stroke="#3ab8e8" stroke-width="3" stroke-linecap="round">
+        <line x1="0"    y1="-19" x2="0"    y2="-24"/>
+        <line x1="0"    y1="7"   x2="0"    y2="12"/>
+        <line x1="-14"  y1="-6"  x2="-19"  y2="-6"/>
+        <line x1="14"   y1="-6"  x2="19"   y2="-6"/>
+        <line x1="-9.9" y1="-15.9" x2="-13.4" y2="-18.4"/>
+        <line x1="9.9"  y1="-15.9" x2="13.4"  y2="-18.4"/>
+        <line x1="-9.9" y1="3.9"   x2="-13.4" y2="6.4"/>
+        <line x1="9.9"  y1="3.9"   x2="13.4"  y2="6.4"/>
+      </g>
+    </g>
+
+    <!-- Animacion: 10 vueltas (3600), ease-out, se para al acabar -->
+    <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      from="0 196.5 415"
+      to="3600 196.5 415"
+      dur="5s"
+      repeatCount="1"
+      fill="freeze"
+      calcMode="spline"
+      keyTimes="0;1"
+      keySplines="0.1 0 0.1 1"
+    />
+  </g>
+
+  <!-- Texto estatico -->
+  <text x="362" y="794" text-anchor="end" fill="white"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif"
+    font-size="18" font-weight="600" letter-spacing="0.3">Elionor Assistant</text>
+  <text x="362" y="820" text-anchor="end" fill="#6a9ab8"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif"
+    font-size="14" letter-spacing="1">v1.21.1</text>
+</svg>
