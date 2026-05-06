@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
+      data-i18n-attr="content:metaDescription"
       content="Elionor — Tu asistente personal para finanzas, agenda, salud, localización familiar, mensajería y mucho más."
     />
     <title>Elionor — Tu asistente personal</title>
@@ -112,6 +113,40 @@
       }
       .nav-links a:hover {
         color: var(--c-primary);
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .language-select {
+        appearance: none;
+        border: 1px solid var(--c-border);
+        background: #fff;
+        color: var(--c-text);
+        border-radius: 999px;
+        min-width: 132px;
+        padding: 13px 42px 13px 16px;
+        font: inherit;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.1;
+        background-image:
+          linear-gradient(45deg, transparent 50%, var(--c-primary) 50%),
+          linear-gradient(135deg, var(--c-primary) 50%, transparent 50%);
+        background-position:
+          calc(100% - 20px) calc(50% - 3px),
+          calc(100% - 14px) calc(50% - 3px);
+        background-size:
+          6px 6px,
+          6px 6px;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(79, 70, 229, 0.08);
+      }
+      .language-select:focus {
+        outline: 2px solid rgba(79, 70, 229, 0.2);
+        outline-offset: 2px;
       }
       .btn {
         display: inline-flex;
@@ -350,6 +385,10 @@
         background: rgba(255, 255, 255, 0.08);
         border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
+      .screenshots-badge {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+      }
 
       /* ── VIDEO ── */
       .video-section {
@@ -524,6 +563,10 @@
         font-size: 0.85rem;
         color: var(--c-muted);
       }
+      .subscription-cta {
+        font-size: 1rem;
+        padding: 14px 34px;
+      }
 
       /* ── FOOTER ── */
       footer {
@@ -550,6 +593,10 @@
         margin-top: 14px;
         flex-wrap: wrap;
       }
+      .footer-copy {
+        margin-top: 16px;
+        font-size: 0.8rem;
+      }
 
       /* ── RESPONSIVE ── */
       @media (max-width: 768px) {
@@ -573,6 +620,18 @@
         .nav-links {
           display: none;
         }
+        .nav-actions {
+          gap: 8px;
+        }
+        .language-select {
+          min-width: 120px;
+          padding: 11px 34px 11px 12px;
+          font-size: 0.92rem;
+        }
+        .nav-actions .btn {
+          padding-left: 14px;
+          padding-right: 14px;
+        }
         .section {
           padding: 60px 0;
         }
@@ -591,12 +650,27 @@
           <span>Elionor</span>
         </a>
         <div class="nav-links">
-          <a href="#funcionalidades">Funcionalidades</a>
-          <a href="#capturas">Capturas</a>
-          <a href="#video">Vídeo</a>
-          <a href="#descarga">Descargar</a>
+          <a href="#funcionalidades" data-i18n="navFeatures">Funcionalidades</a>
+          <a href="#capturas" data-i18n="navScreenshots">Capturas</a>
+          <a href="#video" data-i18n="navVideo">Vídeo</a>
+          <a href="#descarga" data-i18n="navDownload">Descargar</a>
         </div>
-        <a href="#descarga" class="btn btn-primary">Descargar</a>
+        <div class="nav-actions">
+          <select
+            id="languageSelect"
+            class="language-select"
+            aria-label="Language selector"
+          >
+            <option value="es">🇪🇸 ES</option>
+            <option value="en">🇬🇧 EN</option>
+            <option value="ca">🏴 CA</option>
+            <option value="fr">🇫🇷 FR</option>
+            <option value="it">🇮🇹 IT</option>
+          </select>
+          <a href="#descarga" class="btn btn-primary" data-i18n="navDownload"
+            >Descargar</a
+          >
+        </div>
       </div>
     </nav>
 
@@ -604,22 +678,35 @@
     <section class="hero">
       <div class="container">
         <div class="hero-text">
-          <span class="badge">Disponible ya</span>
-          <h1>Tu asistente personal<br /><span>siempre contigo</span></h1>
-          <p>
+          <span class="badge" data-i18n="heroBadge">Próximamente</span>
+          <h1 data-i18n="heroTitle">
+            Tu asistente personal<br /><span>siempre contigo</span>
+          </h1>
+          <p data-i18n="heroDescription">
             Elionor reúne finanzas, agenda, salud, localización familiar,
             mensajería y asistente vocal en una sola app para iPhone, iPad,
             Android y Apple Watch.
           </p>
           <div class="hero-actions">
-            <a href="#descarga" class="btn btn-primary">📲 Descargar gratis</a>
-            <a href="#video" class="btn btn-outline">▶ Ver vídeo</a>
+            <a
+              href="#descarga"
+              class="btn btn-primary"
+              data-i18n="heroPrimaryCta"
+              >📲 Descargar gratis</a
+            >
+            <a
+              href="#video"
+              class="btn btn-outline"
+              data-i18n="heroSecondaryCta"
+              >▶ Ver vídeo</a
+            >
           </div>
         </div>
         <div class="hero-image">
           <div class="hero-phone spin" id="heroPhone">
             <img
               src="screenshots/splash-screen.svg"
+              data-i18n-attr="alt:heroImageAlt"
               alt="Splash screen de Elionor"
             />
           </div>
@@ -631,9 +718,11 @@
     <section class="features section" id="funcionalidades">
       <div class="container">
         <div class="section-header">
-          <span class="badge">Funcionalidades</span>
-          <h2>Todo lo que necesitas,<br />en un solo lugar</h2>
-          <p>
+          <span class="badge" data-i18n="featuresBadge">Funcionalidades</span>
+          <h2 data-i18n="featuresTitle">
+            Todo lo que necesitas,<br />en un solo lugar
+          </h2>
+          <p data-i18n="featuresDescription">
             Desde el control de tus cuentas hasta la localización de tu familia.
             Elionor lo centraliza todo.
           </p>
@@ -641,40 +730,40 @@
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">💰</div>
-            <h3>Finanzas personales</h3>
-            <p>
+            <h3 data-i18n="featureFinanceTitle">Finanzas personales</h3>
+            <p data-i18n="featureFinanceDesc">
               Controla cuentas, movimientos, presupuestos y pagos programados.
               Gráficas de cashflow y resumen mensual.
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">📅</div>
-            <h3>Agenda personal</h3>
-            <p>
+            <h3 data-i18n="featureAgendaTitle">Agenda personal</h3>
+            <p data-i18n="featureAgendaDesc">
               Citas, tareas y recordatorios sincronizados con tu calendario.
               Nunca olvides nada importante.
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">💊</div>
-            <h3>Salud y medicación</h3>
-            <p>
+            <h3 data-i18n="featureHealthTitle">Salud y medicación</h3>
+            <p data-i18n="featureHealthDesc">
               Registra medicamentos, dosis y horas. Avisos automáticos para que
               nunca te saltes una toma.
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">🎙️</div>
-            <h3>Asistente vocal</h3>
-            <p>
+            <h3 data-i18n="featureVoiceTitle">Asistente vocal</h3>
+            <p data-i18n="featureVoiceDesc">
               Di "Elionor, abre finanzas" o "Elionor, ¿qué tengo mañana?" y la
               app responde. Manos libres total.
             </p>
           </div>
           <div class="feature-card highlight">
             <div class="feature-icon">📍</div>
-            <h3>Encuentra mi familia</h3>
-            <p>
+            <h3 data-i18n="featureFamilyTitle">Encuentra mi familia</h3>
+            <p data-i18n="featureFamilyDesc">
               Localiza a los miembros de tu familia en tiempo real en el mapa.
               Coordinaos sin esfuerzo y teneos siempre localizados.
             </p>
@@ -682,39 +771,39 @@
           <div class="feature-card highlight">
             <div class="feature-icon">💬</div>
             <h3>EliCom</h3>
-            <p>
+            <p data-i18n="featureElicomDesc">
               Mensajería interna de Elionor para comunicarte con tu familia
               directamente desde la app. Sin salir, sin apps de terceros.
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">📷</div>
-            <h3>Multimedia</h3>
-            <p>
+            <h3 data-i18n="featureMediaTitle">Multimedia</h3>
+            <p data-i18n="featureMediaDesc">
               Fotos, vídeos y audios organizados y siempre accesibles. Graba y
               gestiona desde la propia app.
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">🔐</div>
-            <h3>Gestor de contraseñas</h3>
-            <p>
+            <h3 data-i18n="featurePasswordsTitle">Gestor de contraseñas</h3>
+            <p data-i18n="featurePasswordsDesc">
               Guarda credenciales protegidas con Face ID o huella dactilar. Se
               bloquean automáticamente al salir.
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">⌚</div>
-            <h3>Apple Watch</h3>
-            <p>
+            <h3 data-i18n="featureWatchTitle">Apple Watch</h3>
+            <p data-i18n="featureWatchDesc">
               Consulta tu agenda y finanzas directamente desde la muñeca.
               Rápido, elegante y sin sacar el móvil.
             </p>
           </div>
           <div class="feature-card">
             <div class="feature-icon">☁️</div>
-            <h3>Offline-first + sync cloud</h3>
-            <p>
+            <h3 data-i18n="featureSyncTitle">Offline-first + sync cloud</h3>
+            <p data-i18n="featureSyncDesc">
               Funciona sin internet. Cuando te conectas, sincroniza tus datos de
               forma segura en la nube.
             </p>
@@ -727,55 +816,93 @@
     <section class="screenshots section" id="capturas">
       <div class="container">
         <div class="section-header">
-          <span
-            class="badge"
-            style="background: rgba(255, 255, 255, 0.15); color: #fff"
+          <span class="badge screenshots-badge" data-i18n="screenshotsBadge"
             >Capturas de pantalla</span
           >
-          <h2>Así es Elionor por dentro</h2>
-          <p>
+          <h2 data-i18n="screenshotsTitle">Así es Elionor por dentro</h2>
+          <p data-i18n="screenshotsDescription">
             Una interfaz limpia y moderna que se adapta a iPhone, iPad y
             Android.
           </p>
         </div>
         <div class="screenshots-row">
           <div class="screen-card">
-            <img src="screenshots/main-menu.png" alt="Panel principal" />
-            <div class="screen-caption">Panel principal</div>
+            <img
+              src="screenshots/main-menu.png"
+              data-i18n-attr="alt:screenMainAlt"
+              alt="Panel principal"
+            />
+            <div class="screen-caption" data-i18n="screenMainCaption">
+              Panel principal
+            </div>
           </div>
           <div class="screen-card">
-            <img src="screenshots/screen-finanzas.png" alt="Finanzas" />
-            <div class="screen-caption">Finanzas</div>
+            <img
+              src="screenshots/screen-finanzas.png"
+              data-i18n-attr="alt:screenFinanceAlt"
+              alt="Finanzas"
+            />
+            <div class="screen-caption" data-i18n="screenFinanceCaption">
+              Finanzas
+            </div>
           </div>
           <div class="screen-card">
-            <img src="screenshots/screen-agenda.png" alt="Agenda" />
-            <div class="screen-caption">Agenda personal</div>
+            <img
+              src="screenshots/screen-agenda.png"
+              data-i18n-attr="alt:screenAgendaAlt"
+              alt="Agenda"
+            />
+            <div class="screen-caption" data-i18n="screenAgendaCaption">
+              Agenda personal
+            </div>
           </div>
           <div class="screen-card">
             <img
               src="screenshots/screen-familia.png"
+              data-i18n-attr="alt:screenFamilyAlt"
               alt="Encuentra mi familia"
             />
-            <div class="screen-caption">Encuentra mi familia</div>
+            <div class="screen-caption" data-i18n="screenFamilyCaption">
+              Encuentra mi familia
+            </div>
           </div>
           <div class="screen-card">
-            <img src="screenshots/screen-elicom.png" alt="EliCom" />
+            <img
+              src="screenshots/screen-elicom.png"
+              data-i18n-attr="alt:screenElicomAlt"
+              alt="EliCom"
+            />
             <div class="screen-caption">EliCom</div>
           </div>
           <div class="screen-card">
-            <img src="screenshots/screen-salud.png" alt="Salud y medicación" />
-            <div class="screen-caption">Salud y medicación</div>
+            <img
+              src="screenshots/screen-salud.png"
+              data-i18n-attr="alt:screenHealthAlt"
+              alt="Salud y medicación"
+            />
+            <div class="screen-caption" data-i18n="screenHealthCaption">
+              Salud y medicación
+            </div>
           </div>
           <div class="screen-card">
-            <img src="screenshots/screen-multimedia.png" alt="Multimedia" />
-            <div class="screen-caption">Multimedia</div>
+            <img
+              src="screenshots/screen-multimedia.png"
+              data-i18n-attr="alt:screenMediaAlt"
+              alt="Multimedia"
+            />
+            <div class="screen-caption" data-i18n="screenMediaCaption">
+              Multimedia
+            </div>
           </div>
           <div class="screen-card">
             <img
               src="screenshots/screen-lect-trad.png"
+              data-i18n-attr="alt:screenReadTranslateAlt"
               alt="Lectura y traducción"
             />
-            <div class="screen-caption">Lectura y traducción</div>
+            <div class="screen-caption" data-i18n="screenReadTranslateCaption">
+              Lectura y traducción
+            </div>
           </div>
         </div>
       </div>
@@ -785,9 +912,9 @@
     <section class="video-section section" id="video">
       <div class="container">
         <div class="section-header">
-          <span class="badge">Vídeo demo</span>
-          <h2>Míralo en acción</h2>
-          <p>
+          <span class="badge" data-i18n="videoBadge">Vídeo demo</span>
+          <h2 data-i18n="videoTitle">Míralo en acción</h2>
+          <p data-i18n="videoDescription">
             Descubre todo lo que puedes hacer con Elionor en este vídeo de
             demostración.
           </p>
@@ -796,6 +923,7 @@
           <div class="ratio">
             <iframe
               src="https://www.youtube-nocookie.com/embed/92v_LGlpdFI"
+              data-i18n-attr="title:videoIframeTitle"
               title="Elionor — Vídeo demo"
               allow="
                 accelerometer;
@@ -816,10 +944,16 @@
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-yt"
+            data-i18n="videoYoutubeCta"
           >
             ▶ Ver en YouTube
           </a>
-          <a href="#descarga" class="btn btn-primary">📲 Descargar ahora</a>
+          <a
+            href="#descarga"
+            class="btn btn-primary"
+            data-i18n="videoDownloadCta"
+            >📲 Descargar ahora</a
+          >
         </div>
       </div>
     </section>
@@ -828,25 +962,37 @@
     <section class="subscription section">
       <div class="container">
         <div class="subscription-card">
-          <span class="price-badge">Premium</span>
-          <h3>Accede a todo</h3>
-          <p class="sub-desc">
+          <span class="price-badge" data-i18n="subscriptionBadge">Premium</span>
+          <h3 data-i18n="subscriptionTitle">Accede a todo</h3>
+          <p class="sub-desc" data-i18n="subscriptionDescription">
             Suscripción única para iPhone, iPad, Android y Apple Watch.
           </p>
           <ul class="check-list">
-            <li>Finanzas completas: cuentas, movimientos y cashflow</li>
-            <li>Agenda personal sincronizada con tu calendario</li>
-            <li>Localización familiar en tiempo real</li>
-            <li>Mensajería interna con EliCom</li>
-            <li>Asistente vocal manos libres</li>
-            <li>Salud, medicación y gestor de contraseñas</li>
-            <li>Sincronización cloud y copias de seguridad automáticas</li>
-            <li>Soporte prioritario y actualizaciones continuas</li>
+            <li data-i18n="subscriptionItem1">
+              Finanzas completas: cuentas, movimientos y cashflow
+            </li>
+            <li data-i18n="subscriptionItem2">
+              Agenda personal sincronizada con tu calendario
+            </li>
+            <li data-i18n="subscriptionItem3">
+              Localización familiar en tiempo real
+            </li>
+            <li data-i18n="subscriptionItem4">Mensajería interna con EliCom</li>
+            <li data-i18n="subscriptionItem5">Asistente vocal manos libres</li>
+            <li data-i18n="subscriptionItem6">
+              Salud, medicación y gestor de contraseñas
+            </li>
+            <li data-i18n="subscriptionItem7">
+              Sincronización cloud y copias de seguridad automáticas
+            </li>
+            <li data-i18n="subscriptionItem8">
+              Soporte prioritario y actualizaciones continuas
+            </li>
           </ul>
           <a
             href="#descarga"
-            class="btn btn-primary"
-            style="font-size: 1rem; padding: 14px 34px"
+            class="btn btn-primary subscription-cta"
+            data-i18n="subscriptionCta"
             >Empezar ahora</a
           >
         </div>
@@ -857,23 +1003,23 @@
     <section class="download section" id="descarga">
       <div class="container">
         <div class="download-inner">
-          <span class="badge">Descarga gratis</span>
-          <h2>Disponible en todas las plataformas</h2>
-          <p>
+          <span class="badge" data-i18n="downloadBadge">Descarga gratis</span>
+          <h2 data-i18n="downloadTitle">Disponible en todas las plataformas</h2>
+          <p data-i18n="downloadDescription">
             Descarga Elionor en tu dispositivo favorito y empieza hoy mismo.
           </p>
           <div class="store-badges">
             <a href="#" class="store-badge">
               <span class="store-badge-icon">🍎</span>
               <span class="store-badge-text">
-                <small>Disponible en</small>
+                <small data-i18n="storeAvailableOn">Disponible en</small>
                 <strong>App Store</strong>
               </span>
             </a>
             <a href="#" class="store-badge google">
               <span class="store-badge-icon">▶</span>
               <span class="store-badge-text">
-                <small>Disponible en</small>
+                <small data-i18n="storeAvailableOn">Disponible en</small>
                 <strong>Google Play</strong>
               </span>
             </a>
@@ -893,22 +1039,585 @@
     <footer>
       <div class="container">
         <p>
-          <strong>Elionor</strong> &mdash; Tu asistente personal inteligente
+          <strong>Elionor</strong> &mdash;
+          <span data-i18n="footerTagline"
+            >Tu asistente personal inteligente</span
+          >
         </p>
         <div class="footer-links">
-          <a href="#">Política de privacidad</a>
-          <a href="#">Términos de uso</a>
-          <a href="#">Soporte</a>
-          <a href="#">Contacto</a>
+          <a href="#" data-i18n="footerPrivacy">Política de privacidad</a>
+          <a href="#" data-i18n="footerTerms">Términos de uso</a>
+          <a href="#" data-i18n="footerSupport">Soporte</a>
+          <a href="#" data-i18n="footerContact">Contacto</a>
         </div>
-        <p style="margin-top: 16px; font-size: 0.8rem">
+        <p class="footer-copy" data-i18n="footerRights">
           &copy; <span id="year"></span> Elionor. Todos los derechos reservados.
         </p>
       </div>
     </footer>
 
     <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
+      const translations = {
+        es: {
+          metaTitle: 'Elionor — Tu asistente personal',
+          metaDescription:
+            'Elionor — Tu asistente personal para finanzas, agenda, salud, localización familiar, mensajería y mucho más.',
+          navFeatures: 'Funcionalidades',
+          navScreenshots: 'Capturas',
+          navVideo: 'Vídeo',
+          navDownload: 'Descargar',
+          heroBadge: 'Próximamente',
+          heroTitle: 'Tu asistente personal<br><span>siempre contigo</span>',
+          heroDescription:
+            'Elionor reúne finanzas, agenda, salud, localización familiar, mensajería y asistente vocal en una sola app para iPhone, iPad, Android y Apple Watch.',
+          heroPrimaryCta: '📲 Descargar gratis',
+          heroSecondaryCta: '▶ Ver vídeo',
+          heroImageAlt: 'Splash screen de Elionor',
+          featuresBadge: 'Funcionalidades',
+          featuresTitle: 'Todo lo que necesitas,<br>en un solo lugar',
+          featuresDescription:
+            'Desde el control de tus cuentas hasta la localización de tu familia. Elionor lo centraliza todo.',
+          featureFinanceTitle: 'Finanzas personales',
+          featureFinanceDesc:
+            'Controla cuentas, movimientos, presupuestos y pagos programados. Gráficas de cashflow y resumen mensual.',
+          featureAgendaTitle: 'Agenda personal',
+          featureAgendaDesc:
+            'Citas, tareas y recordatorios sincronizados con tu calendario. Nunca olvides nada importante.',
+          featureHealthTitle: 'Salud y medicación',
+          featureHealthDesc:
+            'Registra medicamentos, dosis y horas. Avisos automáticos para que nunca te saltes una toma.',
+          featureVoiceTitle: 'Asistente vocal',
+          featureVoiceDesc:
+            'Di "Elionor, abre finanzas" o "Elionor, ¿qué tengo mañana?" y la app responde. Manos libres total.',
+          featureFamilyTitle: 'Encuentra mi familia',
+          featureFamilyDesc:
+            'Localiza a los miembros de tu familia en tiempo real en el mapa. Coordinaos sin esfuerzo y teneos siempre localizados.',
+          featureElicomDesc:
+            'Mensajería interna de Elionor para comunicarte con tu familia directamente desde la app. Sin salir, sin apps de terceros.',
+          featureMediaTitle: 'Multimedia',
+          featureMediaDesc:
+            'Fotos, vídeos y audios organizados y siempre accesibles. Graba y gestiona desde la propia app.',
+          featurePasswordsTitle: 'Gestor de contraseñas',
+          featurePasswordsDesc:
+            'Guarda credenciales protegidas con Face ID o huella dactilar. Se bloquean automáticamente al salir.',
+          featureWatchTitle: 'Apple Watch',
+          featureWatchDesc:
+            'Consulta tu agenda y finanzas directamente desde la muñeca. Rápido, elegante y sin sacar el móvil.',
+          featureSyncTitle: 'Offline-first + sync cloud',
+          featureSyncDesc:
+            'Funciona sin internet. Cuando te conectas, sincroniza tus datos de forma segura en la nube.',
+          screenshotsBadge: 'Capturas de pantalla',
+          screenshotsTitle: 'Así es Elionor por dentro',
+          screenshotsDescription:
+            'Una interfaz limpia y moderna que se adapta a iPhone, iPad y Android.',
+          screenMainAlt: 'Panel principal',
+          screenMainCaption: 'Panel principal',
+          screenFinanceAlt: 'Finanzas',
+          screenFinanceCaption: 'Finanzas',
+          screenAgendaAlt: 'Agenda',
+          screenAgendaCaption: 'Agenda personal',
+          screenFamilyAlt: 'Encuentra mi familia',
+          screenFamilyCaption: 'Encuentra mi familia',
+          screenElicomAlt: 'EliCom',
+          screenHealthAlt: 'Salud y medicación',
+          screenHealthCaption: 'Salud y medicación',
+          screenMediaAlt: 'Multimedia',
+          screenMediaCaption: 'Multimedia',
+          screenReadTranslateAlt: 'Lectura y traducción',
+          screenReadTranslateCaption: 'Lectura y traducción',
+          videoBadge: 'Vídeo demo',
+          videoTitle: 'Míralo en acción',
+          videoDescription:
+            'Descubre todo lo que puedes hacer con Elionor en este vídeo de demostración.',
+          videoIframeTitle: 'Elionor — Vídeo demo',
+          videoYoutubeCta: '▶ Ver en YouTube',
+          videoDownloadCta: '📲 Descargar ahora',
+          subscriptionBadge: 'Premium',
+          subscriptionTitle: 'Accede a todo',
+          subscriptionDescription:
+            'Suscripción única para iPhone, iPad, Android y Apple Watch.',
+          subscriptionItem1:
+            'Finanzas completas: cuentas, movimientos y cashflow',
+          subscriptionItem2: 'Agenda personal sincronizada con tu calendario',
+          subscriptionItem3: 'Localización familiar en tiempo real',
+          subscriptionItem4: 'Mensajería interna con EliCom',
+          subscriptionItem5: 'Asistente vocal manos libres',
+          subscriptionItem6: 'Salud, medicación y gestor de contraseñas',
+          subscriptionItem7:
+            'Sincronización cloud y copias de seguridad automáticas',
+          subscriptionItem8: 'Soporte prioritario y actualizaciones continuas',
+          subscriptionCta: 'Empezar ahora',
+          downloadBadge: 'Descarga gratis',
+          downloadTitle: 'Disponible en todas las plataformas',
+          downloadDescription:
+            'Descarga Elionor en tu dispositivo favorito y empieza hoy mismo.',
+          storeAvailableOn: 'Disponible en',
+          footerTagline: 'Tu asistente personal inteligente',
+          footerPrivacy: 'Política de privacidad',
+          footerTerms: 'Términos de uso',
+          footerSupport: 'Soporte',
+          footerContact: 'Contacto',
+          footerRights:
+            '&copy; <span id="year"></span> Elionor. Todos los derechos reservados.',
+        },
+        en: {
+          metaTitle: 'Elionor — Your personal assistant',
+          metaDescription:
+            'Elionor — Your personal assistant for finance, calendar, health, family location, messaging, and much more.',
+          navFeatures: 'Features',
+          navScreenshots: 'Screenshots',
+          navVideo: 'Video',
+          navDownload: 'Download',
+          heroBadge: 'Coming soon',
+          heroTitle: 'Your personal assistant<br><span>always with you</span>',
+          heroDescription:
+            'Elionor brings together finance, calendar, health, family location, messaging, and a voice assistant in one app for iPhone, iPad, Android, and Apple Watch.',
+          heroPrimaryCta: '📲 Download free',
+          heroSecondaryCta: '▶ Watch video',
+          heroImageAlt: 'Elionor splash screen',
+          featuresBadge: 'Features',
+          featuresTitle: 'Everything you need,<br>in one place',
+          featuresDescription:
+            'From managing your accounts to locating your family, Elionor brings everything together.',
+          featureFinanceTitle: 'Personal finance',
+          featureFinanceDesc:
+            'Track accounts, transactions, budgets, and scheduled payments. Cashflow charts and monthly summaries included.',
+          featureAgendaTitle: 'Personal calendar',
+          featureAgendaDesc:
+            'Appointments, tasks, and reminders synced with your calendar. Never miss what matters.',
+          featureHealthTitle: 'Health and medication',
+          featureHealthDesc:
+            'Log medicines, doses, and schedules. Automatic alerts help you never miss a dose.',
+          featureVoiceTitle: 'Voice assistant',
+          featureVoiceDesc:
+            'Say "Elionor, open finance" or "Elionor, what do I have tomorrow?" and the app responds. Completely hands-free.',
+          featureFamilyTitle: 'Find my family',
+          featureFamilyDesc:
+            'See your family members in real time on the map. Coordinate easily and stay connected.',
+          featureElicomDesc:
+            'Elionor internal messaging so you can talk with your family directly inside the app. No switching, no third-party apps.',
+          featureMediaTitle: 'Media',
+          featureMediaDesc:
+            'Photos, videos, and audio always organized and accessible. Record and manage everything from the app itself.',
+          featurePasswordsTitle: 'Password manager',
+          featurePasswordsDesc:
+            'Store credentials protected by Face ID or fingerprint. They lock automatically when you leave.',
+          featureWatchTitle: 'Apple Watch',
+          featureWatchDesc:
+            'Check your calendar and finances right from your wrist. Fast, elegant, and no need to take out your phone.',
+          featureSyncTitle: 'Offline-first + cloud sync',
+          featureSyncDesc:
+            'Works without internet. When you reconnect, your data syncs securely to the cloud.',
+          screenshotsBadge: 'Screenshots',
+          screenshotsTitle: 'See Elionor from the inside',
+          screenshotsDescription:
+            'A clean, modern interface designed for iPhone, iPad, and Android.',
+          screenMainAlt: 'Main dashboard',
+          screenMainCaption: 'Main dashboard',
+          screenFinanceAlt: 'Finance',
+          screenFinanceCaption: 'Finance',
+          screenAgendaAlt: 'Calendar',
+          screenAgendaCaption: 'Personal calendar',
+          screenFamilyAlt: 'Find my family',
+          screenFamilyCaption: 'Find my family',
+          screenElicomAlt: 'EliCom',
+          screenHealthAlt: 'Health and medication',
+          screenHealthCaption: 'Health and medication',
+          screenMediaAlt: 'Media',
+          screenMediaCaption: 'Media',
+          screenReadTranslateAlt: 'Reading and translation',
+          screenReadTranslateCaption: 'Reading and translation',
+          videoBadge: 'Demo video',
+          videoTitle: 'See it in action',
+          videoDescription:
+            'Discover everything you can do with Elionor in this demo video.',
+          videoIframeTitle: 'Elionor — Demo video',
+          videoYoutubeCta: '▶ Watch on YouTube',
+          videoDownloadCta: '📲 Download now',
+          subscriptionBadge: 'Premium',
+          subscriptionTitle: 'Get full access',
+          subscriptionDescription:
+            'One subscription for iPhone, iPad, Android, and Apple Watch.',
+          subscriptionItem1:
+            'Complete finance tools: accounts, transactions, and cashflow',
+          subscriptionItem2: 'Personal calendar synced with your calendar app',
+          subscriptionItem3: 'Real-time family location',
+          subscriptionItem4: 'Internal messaging with EliCom',
+          subscriptionItem5: 'Hands-free voice assistant',
+          subscriptionItem6: 'Health, medication, and password manager',
+          subscriptionItem7: 'Cloud sync and automatic backups',
+          subscriptionItem8: 'Priority support and continuous updates',
+          subscriptionCta: 'Start now',
+          downloadBadge: 'Free download',
+          downloadTitle: 'Available on every platform',
+          downloadDescription:
+            'Download Elionor on your favorite device and get started today.',
+          storeAvailableOn: 'Available on',
+          footerTagline: 'Your smart personal assistant',
+          footerPrivacy: 'Privacy policy',
+          footerTerms: 'Terms of use',
+          footerSupport: 'Support',
+          footerContact: 'Contact',
+          footerRights:
+            '&copy; <span id="year"></span> Elionor. All rights reserved.',
+        },
+        ca: {
+          metaTitle: 'Elionor — La teva assistent personal',
+          metaDescription:
+            'Elionor — La teva assistent personal per a finances, agenda, salut, localització familiar, missatgeria i molt més.',
+          navFeatures: 'Funcionalitats',
+          navScreenshots: 'Captures',
+          navVideo: 'Vídeo',
+          navDownload: 'Descarrega',
+          heroBadge: 'Properament',
+          heroTitle: 'La teva assistent personal<br><span>sempre amb tu</span>',
+          heroDescription:
+            'Elionor reuneix finances, agenda, salut, localització familiar, missatgeria i assistent de veu en una sola app per a iPhone, iPad, Android i Apple Watch.',
+          heroPrimaryCta: '📲 Descarrega gratis',
+          heroSecondaryCta: '▶ Mira el vídeo',
+          heroImageAlt: "Pantalla inicial d'Elionor",
+          featuresBadge: 'Funcionalitats',
+          featuresTitle: 'Tot el que necessites,<br>en un sol lloc',
+          featuresDescription:
+            'Des del control dels teus comptes fins a la localització de la teva família. Elionor ho centralitza tot.',
+          featureFinanceTitle: 'Finances personals',
+          featureFinanceDesc:
+            'Controla comptes, moviments, pressupostos i pagaments programats. Gràfics de cashflow i resum mensual.',
+          featureAgendaTitle: 'Agenda personal',
+          featureAgendaDesc:
+            'Cites, tasques i recordatoris sincronitzats amb el teu calendari. No oblidis res important.',
+          featureHealthTitle: 'Salut i medicació',
+          featureHealthDesc:
+            "Registra medicaments, dosis i hores. Avisos automàtics perquè no t'oblidis mai d'una presa.",
+          featureVoiceTitle: 'Assistent de veu',
+          featureVoiceDesc:
+            'Digues "Elionor, obre finances" o "Elionor, què tinc demà?" i l\'app respon. Mans lliures de debò.',
+          featureFamilyTitle: 'Troba la meva família',
+          featureFamilyDesc:
+            'Localitza els membres de la teva família en temps real al mapa. Coordineu-vos fàcilment i estigueu sempre localitzats.',
+          featureElicomDesc:
+            "Missatgeria interna d'Elionor per comunicar-te amb la teva família directament des de l'app. Sense sortir-ne, sense apps de tercers.",
+          featureMediaTitle: 'Multimèdia',
+          featureMediaDesc:
+            'Fotos, vídeos i àudios organitzats i sempre accessibles. Enregistra i gestiona-ho tot des de la mateixa app.',
+          featurePasswordsTitle: 'Gestor de contrasenyes',
+          featurePasswordsDesc:
+            'Guarda credencials protegides amb Face ID o empremta digital. Es bloquegen automàticament en sortir.',
+          featureWatchTitle: 'Apple Watch',
+          featureWatchDesc:
+            'Consulta la teva agenda i finances directament des del canell. Ràpid, elegant i sense treure el mòbil.',
+          featureSyncTitle: 'Offline-first + sync cloud',
+          featureSyncDesc:
+            'Funciona sense internet. Quan et reconnectes, sincronitza les teves dades de manera segura al núvol.',
+          screenshotsBadge: 'Captures de pantalla',
+          screenshotsTitle: 'Així és Elionor per dins',
+          screenshotsDescription:
+            "Una interfície neta i moderna que s'adapta a iPhone, iPad i Android.",
+          screenMainAlt: 'Panell principal',
+          screenMainCaption: 'Panell principal',
+          screenFinanceAlt: 'Finances',
+          screenFinanceCaption: 'Finances',
+          screenAgendaAlt: 'Agenda',
+          screenAgendaCaption: 'Agenda personal',
+          screenFamilyAlt: 'Troba la meva família',
+          screenFamilyCaption: 'Troba la meva família',
+          screenElicomAlt: 'EliCom',
+          screenHealthAlt: 'Salut i medicació',
+          screenHealthCaption: 'Salut i medicació',
+          screenMediaAlt: 'Multimèdia',
+          screenMediaCaption: 'Multimèdia',
+          screenReadTranslateAlt: 'Lectura i traducció',
+          screenReadTranslateCaption: 'Lectura i traducció',
+          videoBadge: 'Vídeo demo',
+          videoTitle: "Mira'l en acció",
+          videoDescription:
+            'Descobreix tot el que pots fer amb Elionor en aquest vídeo de demostració.',
+          videoIframeTitle: 'Elionor — Vídeo demo',
+          videoYoutubeCta: '▶ Mira-ho a YouTube',
+          videoDownloadCta: '📲 Descarrega ara',
+          subscriptionBadge: 'Premium',
+          subscriptionTitle: 'Accedeix a tot',
+          subscriptionDescription:
+            'Subscripció única per a iPhone, iPad, Android i Apple Watch.',
+          subscriptionItem1:
+            'Finances completes: comptes, moviments i cashflow',
+          subscriptionItem2:
+            'Agenda personal sincronitzada amb el teu calendari',
+          subscriptionItem3: 'Localització familiar en temps real',
+          subscriptionItem4: 'Missatgeria interna amb EliCom',
+          subscriptionItem5: 'Assistent de veu mans lliures',
+          subscriptionItem6: 'Salut, medicació i gestor de contrasenyes',
+          subscriptionItem7:
+            'Sincronització al núvol i còpies de seguretat automàtiques',
+          subscriptionItem8: 'Suport prioritari i actualitzacions contínues',
+          subscriptionCta: 'Comença ara',
+          downloadBadge: 'Descarrega gratis',
+          downloadTitle: 'Disponible a totes les plataformes',
+          downloadDescription:
+            'Descarrega Elionor al teu dispositiu preferit i comença avui mateix.',
+          storeAvailableOn: 'Disponible a',
+          footerTagline: 'La teva assistent personal intel·ligent',
+          footerPrivacy: 'Política de privacitat',
+          footerTerms: "Termes d'ús",
+          footerSupport: 'Suport',
+          footerContact: 'Contacte',
+          footerRights:
+            '&copy; <span id="year"></span> Elionor. Tots els drets reservats.',
+        },
+        fr: {
+          metaTitle: 'Elionor — Votre assistante personnelle',
+          metaDescription:
+            "Elionor — Votre assistante personnelle pour les finances, l'agenda, la santé, la localisation familiale, la messagerie et bien plus encore.",
+          navFeatures: 'Fonctionnalités',
+          navScreenshots: 'Captures',
+          navVideo: 'Vidéo',
+          navDownload: 'Télécharger',
+          heroBadge: 'Bientôt',
+          heroTitle:
+            'Votre assistante personnelle<br><span>toujours avec vous</span>',
+          heroDescription:
+            'Elionor réunit finances, agenda, santé, localisation familiale, messagerie et assistant vocal dans une seule application pour iPhone, iPad, Android et Apple Watch.',
+          heroPrimaryCta: '📲 Télécharger gratuitement',
+          heroSecondaryCta: '▶ Voir la vidéo',
+          heroImageAlt: "Écran de démarrage d'Elionor",
+          featuresBadge: 'Fonctionnalités',
+          featuresTitle: 'Tout ce dont vous avez besoin,<br>au même endroit',
+          featuresDescription:
+            'Du suivi de vos comptes à la localisation de votre famille, Elionor centralise tout.',
+          featureFinanceTitle: 'Finances personnelles',
+          featureFinanceDesc:
+            'Suivez vos comptes, mouvements, budgets et paiements programmés. Graphiques de trésorerie et résumé mensuel inclus.',
+          featureAgendaTitle: 'Agenda personnel',
+          featureAgendaDesc:
+            "Rendez-vous, tâches et rappels synchronisés avec votre calendrier. Ne manquez plus rien d'important.",
+          featureHealthTitle: 'Santé et médication',
+          featureHealthDesc:
+            'Enregistrez médicaments, doses et horaires. Des alertes automatiques vous aident à ne jamais oublier une prise.',
+          featureVoiceTitle: 'Assistant vocal',
+          featureVoiceDesc:
+            'Dites "Elionor, ouvre les finances" ou "Elionor, qu\'ai-je demain ?" et l\'application répond. Totalement mains libres.',
+          featureFamilyTitle: 'Retrouver ma famille',
+          featureFamilyDesc:
+            'Localisez les membres de votre famille en temps réel sur la carte. Coordonnez-vous facilement et restez connectés.',
+          featureElicomDesc:
+            "Messagerie interne d'Elionor pour communiquer avec votre famille directement depuis l'application. Sans la quitter, sans applications tierces.",
+          featureMediaTitle: 'Multimédia',
+          featureMediaDesc:
+            "Photos, vidéos et audios toujours organisés et accessibles. Enregistrez et gérez tout depuis l'application.",
+          featurePasswordsTitle: 'Gestionnaire de mots de passe',
+          featurePasswordsDesc:
+            'Stockez vos identifiants protégés par Face ID ou empreinte digitale. Ils se verrouillent automatiquement à la fermeture.',
+          featureWatchTitle: 'Apple Watch',
+          featureWatchDesc:
+            'Consultez votre agenda et vos finances directement depuis votre poignet. Rapide, élégant et sans sortir votre téléphone.',
+          featureSyncTitle: 'Offline-first + sync cloud',
+          featureSyncDesc:
+            'Fonctionne sans internet. Lorsque vous vous reconnectez, vos données sont synchronisées en toute sécurité dans le cloud.',
+          screenshotsBadge: "Captures d'écran",
+          screenshotsTitle: "Découvrez Elionor de l'intérieur",
+          screenshotsDescription:
+            'Une interface moderne et épurée pensée pour iPhone, iPad et Android.',
+          screenMainAlt: 'Tableau de bord principal',
+          screenMainCaption: 'Tableau de bord principal',
+          screenFinanceAlt: 'Finances',
+          screenFinanceCaption: 'Finances',
+          screenAgendaAlt: 'Agenda',
+          screenAgendaCaption: 'Agenda personnel',
+          screenFamilyAlt: 'Retrouver ma famille',
+          screenFamilyCaption: 'Retrouver ma famille',
+          screenElicomAlt: 'EliCom',
+          screenHealthAlt: 'Santé et médication',
+          screenHealthCaption: 'Santé et médication',
+          screenMediaAlt: 'Multimédia',
+          screenMediaCaption: 'Multimédia',
+          screenReadTranslateAlt: 'Lecture et traduction',
+          screenReadTranslateCaption: 'Lecture et traduction',
+          videoBadge: 'Vidéo démo',
+          videoTitle: 'Voyez-la en action',
+          videoDescription:
+            'Découvrez tout ce que vous pouvez faire avec Elionor dans cette vidéo de démonstration.',
+          videoIframeTitle: 'Elionor — Vidéo démo',
+          videoYoutubeCta: '▶ Voir sur YouTube',
+          videoDownloadCta: '📲 Télécharger maintenant',
+          subscriptionBadge: 'Premium',
+          subscriptionTitle: 'Accédez à tout',
+          subscriptionDescription:
+            'Un seul abonnement pour iPhone, iPad, Android et Apple Watch.',
+          subscriptionItem1:
+            'Finances complètes : comptes, mouvements et trésorerie',
+          subscriptionItem2:
+            'Agenda personnel synchronisé avec votre calendrier',
+          subscriptionItem3: 'Localisation familiale en temps réel',
+          subscriptionItem4: 'Messagerie interne avec EliCom',
+          subscriptionItem5: 'Assistant vocal mains libres',
+          subscriptionItem6:
+            'Santé, médication et gestionnaire de mots de passe',
+          subscriptionItem7:
+            'Synchronisation cloud et sauvegardes automatiques',
+          subscriptionItem8: 'Support prioritaire et mises à jour continues',
+          subscriptionCta: 'Commencer maintenant',
+          downloadBadge: 'Téléchargement gratuit',
+          downloadTitle: 'Disponible sur toutes les plateformes',
+          downloadDescription:
+            "Téléchargez Elionor sur votre appareil préféré et commencez dès aujourd'hui.",
+          storeAvailableOn: 'Disponible sur',
+          footerTagline: 'Votre assistante personnelle intelligente',
+          footerPrivacy: 'Politique de confidentialité',
+          footerTerms: "Conditions d'utilisation",
+          footerSupport: 'Support',
+          footerContact: 'Contact',
+          footerRights:
+            '&copy; <span id="year"></span> Elionor. Tous droits réservés.',
+        },
+        it: {
+          metaTitle: 'Elionor — La tua assistente personale',
+          metaDescription:
+            'Elionor — La tua assistente personale per finanze, agenda, salute, localizzazione familiare, messaggistica e molto altro.',
+          navFeatures: 'Funzionalità',
+          navScreenshots: 'Schermate',
+          navVideo: 'Video',
+          navDownload: 'Scarica',
+          heroBadge: 'Prossimamente',
+          heroTitle:
+            'La tua assistente personale<br><span>sempre con te</span>',
+          heroDescription:
+            "Elionor riunisce finanze, agenda, salute, localizzazione familiare, messaggistica e assistente vocale in un'unica app per iPhone, iPad, Android e Apple Watch.",
+          heroPrimaryCta: '📲 Scarica gratis',
+          heroSecondaryCta: '▶ Guarda il video',
+          heroImageAlt: 'Schermata iniziale di Elionor',
+          featuresBadge: 'Funzionalità',
+          featuresTitle: 'Tutto ciò di cui hai bisogno,<br>in un unico posto',
+          featuresDescription:
+            'Dal controllo dei tuoi conti alla localizzazione della tua famiglia, Elionor centralizza tutto.',
+          featureFinanceTitle: 'Finanze personali',
+          featureFinanceDesc:
+            'Tieni sotto controllo conti, movimenti, budget e pagamenti programmati. Grafici di cashflow e riepilogo mensile inclusi.',
+          featureAgendaTitle: 'Agenda personale',
+          featureAgendaDesc:
+            'Appuntamenti, attività e promemoria sincronizzati con il tuo calendario. Non dimenticare più nulla di importante.',
+          featureHealthTitle: 'Salute e farmaci',
+          featureHealthDesc:
+            'Registra medicinali, dosi e orari. Avvisi automatici ti aiutano a non saltare mai una somministrazione.',
+          featureVoiceTitle: 'Assistente vocale',
+          featureVoiceDesc:
+            'Di\' "Elionor, apri finanze" oppure "Elionor, cosa ho domani?" e l\'app risponde. Completamente a mani libere.',
+          featureFamilyTitle: 'Trova la mia famiglia',
+          featureFamilyDesc:
+            'Localizza i membri della tua famiglia in tempo reale sulla mappa. Coordinatevi facilmente e restate sempre connessi.',
+          featureElicomDesc:
+            "Messaggistica interna di Elionor per comunicare con la tua famiglia direttamente dall'app. Senza uscirne, senza app di terze parti.",
+          featureMediaTitle: 'Multimedia',
+          featureMediaDesc:
+            "Foto, video e audio sempre organizzati e accessibili. Registra e gestisci tutto direttamente dall'app.",
+          featurePasswordsTitle: 'Gestore password',
+          featurePasswordsDesc:
+            'Conserva le credenziali protette con Face ID o impronta digitale. Si bloccano automaticamente quando esci.',
+          featureWatchTitle: 'Apple Watch',
+          featureWatchDesc:
+            'Controlla agenda e finanze direttamente dal polso. Rapido, elegante e senza tirare fuori il telefono.',
+          featureSyncTitle: 'Offline-first + sync cloud',
+          featureSyncDesc:
+            'Funziona senza internet. Quando ti ricolleghi, i tuoi dati si sincronizzano in modo sicuro nel cloud.',
+          screenshotsBadge: 'Screenshot',
+          screenshotsTitle: "Scopri Elionor dall'interno",
+          screenshotsDescription:
+            "Un'interfaccia pulita e moderna progettata per iPhone, iPad e Android.",
+          screenMainAlt: 'Dashboard principale',
+          screenMainCaption: 'Dashboard principale',
+          screenFinanceAlt: 'Finanze',
+          screenFinanceCaption: 'Finanze',
+          screenAgendaAlt: 'Agenda',
+          screenAgendaCaption: 'Agenda personale',
+          screenFamilyAlt: 'Trova la mia famiglia',
+          screenFamilyCaption: 'Trova la mia famiglia',
+          screenElicomAlt: 'EliCom',
+          screenHealthAlt: 'Salute e farmaci',
+          screenHealthCaption: 'Salute e farmaci',
+          screenMediaAlt: 'Multimedia',
+          screenMediaCaption: 'Multimedia',
+          screenReadTranslateAlt: 'Lettura e traduzione',
+          screenReadTranslateCaption: 'Lettura e traduzione',
+          videoBadge: 'Video demo',
+          videoTitle: 'Guardala in azione',
+          videoDescription:
+            'Scopri tutto quello che puoi fare con Elionor in questo video dimostrativo.',
+          videoIframeTitle: 'Elionor — Video demo',
+          videoYoutubeCta: '▶ Guarda su YouTube',
+          videoDownloadCta: '📲 Scarica ora',
+          subscriptionBadge: 'Premium',
+          subscriptionTitle: 'Accedi a tutto',
+          subscriptionDescription:
+            'Un unico abbonamento per iPhone, iPad, Android e Apple Watch.',
+          subscriptionItem1: 'Finanze complete: conti, movimenti e cashflow',
+          subscriptionItem2:
+            'Agenda personale sincronizzata con il tuo calendario',
+          subscriptionItem3: 'Localizzazione familiare in tempo reale',
+          subscriptionItem4: 'Messaggistica interna con EliCom',
+          subscriptionItem5: 'Assistente vocale a mani libere',
+          subscriptionItem6: 'Salute, farmaci e gestore password',
+          subscriptionItem7: 'Sincronizzazione cloud e backup automatici',
+          subscriptionItem8: 'Supporto prioritario e aggiornamenti continui',
+          subscriptionCta: 'Inizia ora',
+          downloadBadge: 'Download gratuito',
+          downloadTitle: 'Disponibile su tutte le piattaforme',
+          downloadDescription:
+            'Scarica Elionor sul tuo dispositivo preferito e inizia oggi stesso.',
+          storeAvailableOn: 'Disponibile su',
+          footerTagline: 'La tua assistente personale intelligente',
+          footerPrivacy: 'Informativa sulla privacy',
+          footerTerms: 'Termini di utilizzo',
+          footerSupport: 'Supporto',
+          footerContact: 'Contatto',
+          footerRights:
+            '&copy; <span id="year"></span> Elionor. Tutti i diritti riservati.',
+        },
+      };
+
+      const languageSelect = document.getElementById('languageSelect');
+
+      function updateYear() {
+        const yearElement = document.getElementById('year');
+        if (yearElement) {
+          yearElement.textContent = new Date().getFullYear();
+        }
+      }
+
+      function applyTranslations(language) {
+        const selectedLanguage = translations[language] ? language : 'es';
+        const messages = translations[selectedLanguage];
+
+        document.documentElement.lang = selectedLanguage;
+        document.title = messages.metaTitle;
+
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+          const key = element.dataset.i18n;
+          if (messages[key]) {
+            element.innerHTML = messages[key];
+          }
+        });
+
+        document.querySelectorAll('[data-i18n-attr]').forEach((element) => {
+          const [attribute, key] = element.dataset.i18nAttr.split(':');
+          if (attribute && key && messages[key]) {
+            element.setAttribute(attribute, messages[key]);
+          }
+        });
+
+        languageSelect.value = selectedLanguage;
+        localStorage.setItem('elionor-landing-language', selectedLanguage);
+        updateYear();
+      }
+
+      const preferredLanguage =
+        localStorage.getItem('elionor-landing-language') ||
+        (navigator.language || 'es').slice(0, 2);
+
+      applyTranslations(preferredLanguage);
+
+      languageSelect.addEventListener('change', (event) => {
+        applyTranslations(event.target.value);
+      });
+
       // Quitar la clase spin cuando termina la animacion (no vuelve a girar)
       document
         .getElementById('heroPhone')
