@@ -597,6 +597,14 @@
         margin-top: 16px;
         font-size: 0.8rem;
       }
+      .footer-visits {
+        margin-top: 10px;
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.72);
+      }
+      .footer-visits span {
+        color: rgba(255, 255, 255, 0.9);
+      }
 
       /* ── RESPONSIVE ── */
       @media (max-width: 768px) {
@@ -1058,6 +1066,10 @@
         <p class="footer-copy" data-i18n="footerRights">
           &copy; <span id="year"></span> Elionor. Todos los derechos reservados.
         </p>
+        <p class="footer-visits">
+          <span data-i18n="footerVisitsLabel">Visitas a esta página:</span>
+          <strong id="visitCount" aria-live="polite">...</strong>
+        </p>
       </div>
     </footer>
 
@@ -1162,6 +1174,7 @@
           footerTerms: 'Términos de uso',
           footerSupport: 'Soporte',
           footerContact: 'Contacto',
+          footerVisitsLabel: 'Visitas a esta página:',
           footerRights:
             '&copy; <span id="year"></span> Elionor. Todos los derechos reservados.',
         },
@@ -1263,6 +1276,7 @@
           footerTerms: 'Terms of use',
           footerSupport: 'Support',
           footerContact: 'Contact',
+          footerVisitsLabel: 'Page visits:',
           footerRights:
             '&copy; <span id="year"></span> Elionor. All rights reserved.',
         },
@@ -1366,6 +1380,7 @@
           footerTerms: "Termes d'ús",
           footerSupport: 'Suport',
           footerContact: 'Contacte',
+          footerVisitsLabel: 'Visites a aquesta pàgina:',
           footerRights:
             '&copy; <span id="year"></span> Elionor. Tots els drets reservats.',
         },
@@ -1471,6 +1486,7 @@
           footerTerms: "Conditions d'utilisation",
           footerSupport: 'Support',
           footerContact: 'Contact',
+          footerVisitsLabel: 'Visites de cette page :',
           footerRights:
             '&copy; <span id="year"></span> Elionor. Tous droits réservés.',
         },
@@ -1573,17 +1589,80 @@
           footerTerms: 'Termini di utilizzo',
           footerSupport: 'Supporto',
           footerContact: 'Contatto',
+          footerVisitsLabel: 'Visite a questa pagina:',
           footerRights:
             '&copy; <span id="year"></span> Elionor. Tutti i diritti riservati.',
         },
       };
 
       const languageSelect = document.getElementById('languageSelect');
+      const visitCountElement = document.getElementById('visitCount');
+      const visitCounterNamespace = 'elionorassistant.com';
+      const visitCounterKey = 'landing-home';
+      const localVisitCounterKey = 'elionor-landing-local-visit-count';
+      const minimumVisitCount = 1354;
+      let visitCountValue = null;
 
       function updateYear() {
         const yearElement = document.getElementById('year');
         if (yearElement) {
           yearElement.textContent = new Date().getFullYear();
+        }
+      }
+
+      function renderVisitCount() {
+        if (!visitCountElement) {
+          return;
+        }
+
+        if (typeof visitCountValue !== 'number') {
+          visitCountElement.textContent = '...';
+          return;
+        }
+
+        const locale = document.documentElement.lang || 'es';
+        visitCountElement.textContent = new Intl.NumberFormat(locale).format(
+          visitCountValue
+        );
+      }
+
+      function incrementLocalVisitCounter() {
+        const currentValue = Number.parseInt(
+          localStorage.getItem(localVisitCounterKey) ||
+            String(minimumVisitCount - 1),
+          10
+        );
+        const normalizedCurrent = Number.isFinite(currentValue)
+          ? currentValue
+          : minimumVisitCount - 1;
+        const nextValue = Math.max(normalizedCurrent + 1, minimumVisitCount);
+        localStorage.setItem(localVisitCounterKey, String(nextValue));
+        return nextValue;
+      }
+
+      async function updateVisitCounter() {
+        try {
+          const response = await fetch(
+            `https://api.countapi.xyz/hit/${visitCounterNamespace}/${visitCounterKey}`
+          );
+
+          if (!response.ok) {
+            throw new Error('Visit counter service failed.');
+          }
+
+          const data = await response.json();
+          if (typeof data.value === 'number') {
+            visitCountValue = Math.max(data.value, minimumVisitCount);
+            renderVisitCount();
+          }
+        } catch (error) {
+          // Fallback local para no dejar el contador vacio si falla el servicio externo.
+          visitCountValue = incrementLocalVisitCounter();
+          renderVisitCount();
+          console.error(
+            'Could not update remote visit counter. Using local fallback.',
+            error
+          );
         }
       }
 
@@ -1611,6 +1690,7 @@
         languageSelect.value = selectedLanguage;
         localStorage.setItem('elionor-landing-language', selectedLanguage);
         updateYear();
+        renderVisitCount();
       }
 
       const preferredLanguage =
@@ -1618,6 +1698,7 @@
         (navigator.language || 'es').slice(0, 2);
 
       applyTranslations(preferredLanguage);
+      updateVisitCounter();
 
       languageSelect.addEventListener('change', (event) => {
         applyTranslations(event.target.value);
